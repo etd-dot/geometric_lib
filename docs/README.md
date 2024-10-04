@@ -1,21 +1,86 @@
 
-# How to use calculator:
-1. Run `python calculate.py`
-2. Enter the figure name. Available are Circle, Square.
-3. Enter the function: Area or Perimeter.
-4. Enter figure sizes. Radius for circle, one side for square.
-5. Get the answer!
+## Как пользоваться калькулятором:
 
-# Math formulas
-## Area
-- Circle: `S = πR²`
-- Rectangle: `S = ab`
-- Square: `S = a²`
-- Triangle: `S = sqrt(p * (p-a) * (p-b) * (p-c))` where p is semiperimeter
+1. Запустите python calculate.py
+2. Введите название фигуры. Доступны: Круг, Квадрат.
+3. Введите функцию: Площадь или Периметр.
+4. Введите размеры фигуры. Радиус для круга, одна сторона для квадрата.
+5. Получите ответ!
 
-## Perimeter
-- Circle: `P = 2πR`
-- Rectangle: `P = 2a + 2b`
-- Square: `P = 4a`
-- Triangle: `P = a + b + c`
+## Математические формулы
+
+## Площадь
+- Круг: S = πR²
+- Прямоугольник: S = ab
+- Квадрат: S = a²
+- Треугольник: S = sqrt(p * (p-a) * (p-b) * (p-c)), где p - полупериметр
+
+## Периметр
+- Круг: P = 2πR
+- Прямоугольник: P = 2a + 2b
+- Квадрат: P = 4a
+- Треугольник: P = a + b + c
+
+## Общее описание решения
+
+В проекте реализованы функции для вычисления площади и периметра круга и квадрата. 
+
+- Площадь круга вычисляется по формуле  S = pi*r^2.
+- Периметр круга вычисляется по формуле  P = 2pi * r.
+- Площадь квадрата вычисляется по формуле  S = a^2.
+- Периметр квадрата вычисляется по формуле P = 4*a.
+
+## Описание функций
+
+### 1. Функция для вычисления площади и периметра круга
+import math
+def area (r):
+return math.pi * r * r
+def perimeter(r):
+return 2 * math.pi * r
+#### Пример вызова:
+area = area(4)
+perimeter = perimeter(6)
+print(area)  # 50.26548245743669
+print(perimeter) # 37.69911184307752
+
+
+### 2. Функция для вычисления площади и периметра квадрата
+def area(a):
+return a*a
+def perimeter(a):
+return 4*a
+
+#### Пример вызова:
+area = area(4)
+perimeter = perimeter(6)
+print(area)  # 16
+print(perimeter)  # 24
+
+
+### 3. Функция для вычисления площади и периметра треугольника
+def area(a,b,c):
+return (a + b + c) / 2
+def perimeter(a,b,c):
+return a + b + c
+
+#### Пример вызова:
+area = area(4,5,6)
+perimeter = perimeter(6,5,4)
+print(area)  # 7,5
+print(perimeter)  # 15
+
+
+## История изменений проекта
+
+- d76db2a L-04: Add calculate.py
+- 51c40eb L-04: Doc updated for triangle
+- d080c78 L-04: Triangle added
+- d078c8d L-03: Docs added
+- 8ba9aeb L-03: Circle and square added
+
+
+
+
+
 
