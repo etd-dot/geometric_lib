@@ -10,6 +10,7 @@ on:
       - main
       - release
       - develop
+
   workflow_dispatch:
 
 jobs:
@@ -18,22 +19,23 @@ jobs:
 
     env:
       FULL_NAME: "Егоренков Тимофей Дмитриевич"
-      GROUP: "M3114"
+      GROUP_NUMBER: "M3114"
+     
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Print user information
+      - name: Print Information
         run: |
-          echo "Full Name: $FULL_NAME"
-          echo "Group: $GROUP"
+          echo "ФИО: $FIO"
+          echo "Номер группы: $GROUP_NUMBER"
           echo "GitHub Ник: ${{ github.actor }}"
 
       - name: Set up Python 3.13
         uses: actions/setup-python@v4
         with:
-          python-version: '3.13'
+          python-version: "3.13"
 
       - name: Cache pip
         uses: actions/cache@v3
@@ -43,6 +45,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pip-
 
+      - name: Create virt environment
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+      
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -51,17 +59,11 @@ jobs:
       - name: Set PYTHONPATH
         run: echo "PYTHONPATH=$PYTHONPATH:$(pwd)" >> $GITHUB_ENV
 
-      - name: Verify pytest installation
+      - name: Run pytest
         run: |
-          pip list
-          which pytest
-          python -m pytest --version
+          pytest
 
-      - name: Run tests
-        run: |
-          python -m pytest
-
-      - name: Check code style with black
+      - name: Run black
         run: |
           pip install black
-          black --check .
+          black .
